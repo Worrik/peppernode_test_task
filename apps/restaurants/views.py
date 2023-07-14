@@ -5,7 +5,7 @@ from rest_framework import status
 from apps.managers.models import RestaurantManager
 
 from apps.restaurants.models import Restaurant
-from apps.restaurants.permissions import IsManager
+from apps.managers.permissions import IsManager
 from apps.restaurants.serializers import RestaurantSerializer
 
 

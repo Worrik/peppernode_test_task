@@ -1,6 +1,6 @@
-from rest_framework import viewsets, pagination
+from rest_framework import pagination, viewsets
 
-from apps.restaurants.permissions import IsManagerOrReadOnly
+from apps.managers.permissions import IsManagerOrReadOnly
 
 from .models import Category
 from .models import Product

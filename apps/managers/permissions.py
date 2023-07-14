@@ -1,6 +1,7 @@
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
-from apps.managers.models import RestaurantManager
+from .models import RestaurantManager
+import logging
 
 
 class IsManager(BasePermission):
