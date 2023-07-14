@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 SHARED_APPS = (
     "django_tenants",
     "apps.restaurants",
+    "apps.managers",
 
     "django.contrib.contenttypes",
 
@@ -32,7 +33,6 @@ SHARED_APPS = (
 )
 
 TENANT_APPS = (
-    "apps.managers",
     "apps.products",
 )
 
