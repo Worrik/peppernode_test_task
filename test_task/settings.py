@@ -16,20 +16,32 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = (
+    "django_tenants",
+    "apps.restaurants",
+
+    "django.contrib.contenttypes",
+
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "rest_framework",
-    "apps.tenants",
+)
+
+TENANT_APPS = (
+    "apps.managers",
     "apps.products",
-    "apps.restaurants",
+)
+
+INSTALLED_APPS = list(SHARED_APPS) + [
+    app for app in TENANT_APPS if app not in SHARED_APPS
 ]
 
 MIDDLEWARE = [
+    "django_tenants.middleware.main.TenantMainMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -65,7 +77,7 @@ WSGI_APPLICATION = "test_task.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django_tenants.postgresql_backend",
         "NAME": env.str("POSTGRES_DB"),
         "USER": env.str("POSTGRES_USER"),
         "PASSWORD": env.str("POSTGRES_PASSWORD"),
@@ -73,6 +85,8 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+
+DATABASE_ROUTERS = ("django_tenants.routers.TenantSyncRouter",)
 
 
 # Password validation
@@ -102,6 +116,10 @@ REST_FRAMEWORK = {
     ],
     "PAGE_SIZE": 10,
 }
+
+TENANT_MODEL = "restaurants.Restaurant"
+
+TENANT_DOMAIN_MODEL = "restaurants.Domain"
 
 
 LANGUAGE_CODE = "en-us"

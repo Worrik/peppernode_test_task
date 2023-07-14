@@ -1,5 +1,6 @@
 asgiref==3.7.2; python_version >= "3.8"
 backports.zoneinfo==0.2.1; python_version < "3.9" and python_version >= "3.8"
+django-tenants==3.5.0
 django==4.2.3; python_version >= "3.8"
 djangorestframework==3.14.0; python_version >= "3.6"
 environs==9.5.0; python_version >= "3.6"

@@ -1,9 +1,7 @@
 from django.db import models
 
-from apps.tenants.models import TenantAwareModel
 
-
-class Category(TenantAwareModel):
+class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self) -> str:
@@ -13,7 +11,7 @@ class Category(TenantAwareModel):
         verbose_name_plural = "categories"
 
 
-class Product(TenantAwareModel):
+class Product(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True
     )

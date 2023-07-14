@@ -10,6 +10,7 @@ Django = "^4.2.3"
 djangorestframework = "^3.14.0"
 environs = "^9.5.0"
 psycopg2 = "^2.9.6"
+django-tenants = "^3.5.0"
 
 [tool.poetry.dev-dependencies]
 django-stubs = "^4.2.3"

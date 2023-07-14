@@ -2,8 +2,9 @@ from typing import Optional
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from apps.managers.models import RestaurantManager
 
-from apps.restaurants.models import Restaurant, RestaurantManager
+from apps.restaurants.models import Restaurant
 from apps.restaurants.permissions import IsManager
 from apps.restaurants.serializers import RestaurantSerializer
 

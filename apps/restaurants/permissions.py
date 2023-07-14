@@ -1,8 +1,6 @@
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
-from apps.restaurants.models import RestaurantManager
-
-from apps.tenants.utils import tenant_from_request
+from apps.managers.models import RestaurantManager
 
 
 class IsManager(BasePermission):
@@ -16,8 +14,7 @@ class IsManager(BasePermission):
         except RestaurantManager.DoesNotExist:
             has_manager = False
 
-        tenant = tenant_from_request(request)
-        return has_manager and user.restaurantmanager.tenant == tenant
+        return has_manager
 
 
 class IsManagerOrReadOnly(BasePermission):
@@ -26,7 +23,6 @@ class IsManagerOrReadOnly(BasePermission):
             return True
 
         user = request.user
-        tenant = tenant_from_request(request)
 
         try:
             has_manager = (
@@ -35,4 +31,4 @@ class IsManagerOrReadOnly(BasePermission):
         except RestaurantManager.DoesNotExist:
             has_manager = False
 
-        return has_manager and user.restaurantmanager.tenant == tenant
+        return has_manager

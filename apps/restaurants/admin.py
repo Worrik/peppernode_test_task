@@ -1,13 +1,8 @@
 from django.contrib import admin
 
-from apps.restaurants.models import Restaurant, RestaurantManager
+from apps.restaurants.models import Restaurant
 
 
 @admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
-    fields = ["tenant", "name", "description"]
-
-
-@admin.register(RestaurantManager)
-class RestaurantManagerAdmin(admin.ModelAdmin):
-    fields = ["tenant", "user", "restaurant"]
+    fields = ["name", "description"]
